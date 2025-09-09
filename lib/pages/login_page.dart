@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:list_app/routes/routes.dart';
 import 'package:get/get.dart';
 
-//stfl +enter
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -11,23 +10,27 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  //day  1
   String statusLogin = "Login status";
-  TextEditingController txtUsername = TextEditingController();
-  TextEditingController txtPassword = TextEditingController();
+  final txtUsername = TextEditingController();
+  final txtPassword = TextEditingController();
+
+  @override
+  void dispose() {
+    txtUsername.dispose();
+    txtPassword.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Login Page")),
-
-      //body ; column klik, klik lampu, ubah jadi conatiner
+      appBar: AppBar(title: const Text("Login Page")),
       body: Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // ngatur posisi text
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Welcome To Our APPPP",
               style: TextStyle(
                 fontSize: 24,
@@ -38,54 +41,61 @@ class _LoginPageState extends State<LoginPage> {
 
             //gambar
             Center(
-              child: Container(
-                width: double.tryParse('200'),
+              child: SizedBox(
+                width: 200,
                 child: Image.asset('assets/pohon.png'),
               ),
             ),
-            Text("Fill Username and password :"), //text
+            const SizedBox(height: 10),
+            const Text("Fill Username and password :"),
+
+            // Username
             Container(
-              margin: EdgeInsets.only(top: 10, bottom: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               child: TextField(
                 controller: txtUsername,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "Username",
                   border: OutlineInputBorder(),
                 ),
               ),
             ),
 
-            //hint / label, border
+            // Password
             Container(
-              margin: EdgeInsets.only(top: 10, bottom: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               child: TextField(
                 controller: txtPassword,
                 obscureText: true,
-                decoration: InputDecoration(
-                  labelText: "password",
+                decoration: const InputDecoration(
+                  labelText: "Password",
                   border: OutlineInputBorder(),
                 ),
-              ), //password hidden
+              ),
             ),
 
-            //button
+            // Button login
             Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   if (txtUsername.text == "admin" &&
                       txtPassword.text == "admin123") {
-                    Get.toNamed(
-                    AppRoutes.profilePage,
-                  );
-                    statusLogin = "sukses login";
+                    setState(() {
+                      statusLogin = "Sukses login";
+                    });
+                    Get.offNamed(AppRoutes.profilePage); // ✅ langsung ganti halaman
                   } else {
-                    statusLogin = "gagal login";
+                    setState(() {
+                      statusLogin = "Gagal login";
+                    });
+                    Get.snackbar("Login Error", "Username/Password salah",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red[200]);
                   }
-                  print("status " + statusLogin);
                 },
-                child: Text("Login"),
+                child: const Text("Login"),
               ),
             ),
             Text(statusLogin),

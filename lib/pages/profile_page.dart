@@ -6,17 +6,17 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text("Profile Page")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage("assets/pohon.png"), // contoh
-            ),
+            Icon(Icons.person, size: 100, color: Colors.teal), // ganti gambar pakai icon dulu
             SizedBox(height: 20),
-            Text("Username: FAD",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(
+              "Username: FAD",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             Text("Email: franruqya@gemali.com"),
           ],
         ),

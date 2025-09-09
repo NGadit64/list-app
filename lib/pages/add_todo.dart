@@ -1,26 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:list_app/pages/todo_page.dart';
+import '../controllers/todo_controller.dart';
 
-class AddTodo extends StatelessWidget{
-  const AddTodo ({super.key});
-  
-  
+class AddTodo extends StatefulWidget {
+  const AddTodo({super.key});
 
-@override
-   Widget build(BuildContext context) {
+  @override
+  State<AddTodo> createState() => _AddTodoState();
+}
+
+class _AddTodoState extends State<AddTodo> {
+  final titleC = TextEditingController();
+  final descC = TextEditingController();
+  final categories = ['Sekolah', 'Pekerjaan', 'Pribadi'];
+  String? selectedCategory;
+
+  // ✅ pakai Get.find supaya pakai controller yang sudah ada
+  final todoC = Get.find<TodoController>();
+
+  @override
+  void dispose() {
+    titleC.dispose();
+    descC.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      appBar: AppBar(title: const Text("Tambah Todo")),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage("assets/pohon.png"), // contoh
+          children: [
+            TextField(
+              controller: titleC,
+              decoration: const InputDecoration(
+                labelText: "Judul",
+                border: OutlineInputBorder(),
+              ),
             ),
-            SizedBox(height: 20),
-            Text("Username: Aditya",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            Text("Email: jayakusuma@gemali.com"),
+            const SizedBox(height: 12),
+            TextField(
+              controller: descC,
+              decoration: const InputDecoration(
+                labelText: "Deskripsi",
+                border: OutlineInputBorder(),
+              ),
+              maxLines: 3,
+            ),
+            const SizedBox(height: 12),
+            DropdownButtonFormField<String>(
+              value: selectedCategory,
+              decoration: const InputDecoration(
+                labelText: "Kategori",
+                border: OutlineInputBorder(),
+              ),
+              items: categories
+                  .map((c) => DropdownMenuItem(value: c, child: Text(c)))
+                  .toList(),
+              onChanged: (val) => setState(() => selectedCategory = val),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                if (titleC.text.isNotEmpty && selectedCategory != null) {
+                  todoC.addTodo(
+                    Todo(
+                      id: DateTime.now().millisecondsSinceEpoch.toString(),
+                      title: titleC.text,
+                      description: descC.text,
+                      category: selectedCategory!,
+                    ),
+                  );
+                  Get.back(); // ✅ balik ke halaman sebelumnya
+                  Get.snackbar("Sukses", "Todo berhasil ditambahkan",
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.green[200]);
+                } else {
+                  Get.snackbar("Error", "Judul & kategori harus diisi",
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.red[200]);
+                }
+              },
+              child: const Text("Simpan"),
+            )
           ],
         ),
       ),
