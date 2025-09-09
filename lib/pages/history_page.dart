@@ -15,8 +15,10 @@ class ProfilePage extends StatelessWidget {
               backgroundImage: AssetImage("assets/pohon.png"), // contoh
             ),
             SizedBox(height: 20),
-            Text("Username: FAD",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(
+              "Username: FAD",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             Text("Email: franruqya@gemali.com"),
           ],
         ),

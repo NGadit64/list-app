@@ -12,8 +12,8 @@ class DashboardPage extends StatelessWidget {
     final controller = Get.put(DashboardController());
 
     final List<Widget> pages = [
-      HomePage(),      // ✅ Todo list
-      const ProfilePage(), // ✅ Profile
+      HomePage(),      
+      const ProfilePage(), 
     ];
 
     return Obx(() {

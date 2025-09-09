@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                     setState(() {
                       statusLogin = "Sukses login";
                     });
-                    Get.offNamed(AppRoutes.profilePage); // ✅ langsung ganti halaman
+                    Get.offNamed(AppRoutes.dashboardPage); //page setelah Login
                   } else {
                     setState(() {
                       statusLogin = "Gagal login";

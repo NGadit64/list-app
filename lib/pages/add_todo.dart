@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:list_app/models/todo.dart';
 import 'package:list_app/pages/todo_page.dart';
 import '../controllers/todo_controller.dart';
 
@@ -16,7 +17,7 @@ class _AddTodoState extends State<AddTodo> {
   final categories = ['Sekolah', 'Pekerjaan', 'Pribadi'];
   String? selectedCategory;
 
-  // ✅ pakai Get.find supaya pakai controller yang sudah ada
+ 
   final todoC = Get.find<TodoController>();
 
   @override
@@ -74,7 +75,7 @@ class _AddTodoState extends State<AddTodo> {
                       category: selectedCategory!,
                     ),
                   );
-                  Get.back(); // ✅ balik ke halaman sebelumnya
+                  Get.back();
                   Get.snackbar("Sukses", "Todo berhasil ditambahkan",
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.green[200]);
