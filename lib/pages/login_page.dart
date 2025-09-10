@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:list_app/routes/routes.dart';
 import 'package:get/get.dart';
+import 'package:list_app/controllers/login_controller.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  String statusLogin = "Login status";
-  final txtUsername = TextEditingController();
-  final txtPassword = TextEditingController();
-
-  @override
-  void dispose() {
-    txtUsername.dispose();
-    txtPassword.dispose();
-    super.dispose();
-  }
+  final loginC = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
               child: TextField(
-                controller: txtUsername,
+                controller: loginC.txtUsername,
                 decoration: const InputDecoration(
                   hintText: "Username",
                   border: OutlineInputBorder(),
@@ -65,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
               child: TextField(
-                controller: txtPassword,
+                controller: loginC.txtPassword,
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: "Password",
@@ -79,26 +65,12 @@ class _LoginPageState extends State<LoginPage> {
               margin: const EdgeInsets.all(10),
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  if (txtUsername.text == "admin" &&
-                      txtPassword.text == "admin123") {
-                    setState(() {
-                      statusLogin = "Sukses login";
-                    });
-                    Get.offNamed(AppRoutes.dashboardPage); //page setelah Login
-                  } else {
-                    setState(() {
-                      statusLogin = "Gagal login";
-                    });
-                    Get.snackbar("Login Error", "Username/Password salah",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red[200]);
-                  }
-                },
+                onPressed: loginC.login,
                 child: const Text("Login"),
               ),
             ),
-            Text(statusLogin),
+
+            Obx(() => Text(loginC.statusLogin.value)),
           ],
         ),
       ),

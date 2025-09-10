@@ -46,12 +46,12 @@ class CustomCard extends StatelessWidget {
           onPressed: onDelete,
         ),
         onTap: () {
-          Get.to(() => ListPage(
-                judul: judul,
-                kategori: kategori,
-                deskripsi: deskripsi,
-              ));
-        },
+        Get.to(() => ListPage(), arguments: {
+        'judul': judul,
+        'kategori': kategori,
+        'deskripsi': deskripsi,
+      });
+     },
       ),
     );
   }
