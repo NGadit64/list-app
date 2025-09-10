@@ -15,7 +15,7 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Detail $judul")),
+      appBar: AppBar(title: Text("Detail  $judul")),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
