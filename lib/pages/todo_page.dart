@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:list_app/routes/routes.dart';
 import 'package:list_app/widget/widget_customcard.dart';
 import '../controllers/todo_controller.dart';
 import '../models/todo.dart';
@@ -34,8 +35,8 @@ class TodoPage extends StatelessWidget {
         );
       }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.to(() => const AddTodo()),
-        child: const Icon(Icons.add),
+      onPressed: () => Get.toNamed(AppRoutes.addTodo), 
+      child: const Icon(Icons.add),
       ),
     );
   }

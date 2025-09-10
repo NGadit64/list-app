@@ -9,7 +9,7 @@ class AppPages {
   static final pages = [
     GetPage(name: AppRoutes.loginPage, page: () => const LoginPage()),
     GetPage(name: AppRoutes.dashboardPage, page: () => const DashboardPage()),
-    GetPage(name: AppRoutes.addTodo, page: () => const AddTodo()),
+    GetPage(name: AppRoutes.addTodo, page: () => AddTodoPage()),
     GetPage(name: AppRoutes.profilePage, page: () => const ProfilePage()),
   ];
 }
