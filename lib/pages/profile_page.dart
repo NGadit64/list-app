@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
               "Username: FAD",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            Text("Email: franruqya@gemali.com"),
+            Text("Email: franruqya@gemali.com"),//per controller = 1 binding
           ],
         ),
       ),

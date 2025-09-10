@@ -31,7 +31,7 @@ class MyTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(8), // biar ada border
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: const Color.fromARGB(255, 221, 228, 110), width: 2),
+          borderSide: BorderSide(color: Colors.blue, width: 2),
           borderRadius: BorderRadius.circular(8),
         ),
       ),

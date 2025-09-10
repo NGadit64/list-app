@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:list_app/models/todo.dart';
 import 'package:list_app/pages/todo_page.dart';
+import 'package:list_app/widget/widget_button.dart';
+import 'package:list_app/widget/widget_textfield.dart';
 import '../controllers/todo_controller.dart';
 
 class AddTodo extends StatefulWidget {
@@ -17,7 +19,6 @@ class _AddTodoState extends State<AddTodo> {
   final categories = ['Sekolah', 'Pekerjaan', 'Pribadi'];
   String? selectedCategory;
 
- 
   final todoC = Get.find<TodoController>();
 
   @override
@@ -35,21 +36,20 @@ class _AddTodoState extends State<AddTodo> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            TextField(
-              controller: titleC,
-              decoration: const InputDecoration(
-                labelText: "Judul",
-                border: OutlineInputBorder(),
-              ),
+            MyTextField(
+              textEditingController: titleC,
+              labelText: "Judul",
+              labelColor: Colors.black,
+              pass: false,
+              isNumber: false,
             ),
             const SizedBox(height: 12),
-            TextField(
-              controller: descC,
-              decoration: const InputDecoration(
-                labelText: "Deskripsi",
-                border: OutlineInputBorder(),
-              ),
-              maxLines: 3,
+            MyTextField(
+              textEditingController: descC,
+              labelText: "Deskripsi",
+              labelColor: Colors.black,
+              pass: false,
+              isNumber: false,
             ),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
@@ -64,9 +64,12 @@ class _AddTodoState extends State<AddTodo> {
               onChanged: (val) => setState(() => selectedCategory = val),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            CustomButton(
+              text: "Simpan",
+              textColor: Colors.black,
+              backgroundColor: const Color.fromARGB(255, 247, 225, 143),
               onPressed: () {
-                if (titleC.text.isNotEmpty && selectedCategory != null) {
+                if (titleC.text.isNotEmpty && selectedCategory != null) { //buat ngecek isian todo
                   todoC.addTodo(
                     Todo(
                       id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -76,17 +79,22 @@ class _AddTodoState extends State<AddTodo> {
                     ),
                   );
                   Get.back();
-                  Get.snackbar("Sukses", "Todo berhasil ditambahkan",
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.green[200]);
+                  Get.snackbar(
+                    "Sukses",
+                    "Todo berhasil ditambahkan",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.green[200],
+                  );
                 } else {
-                  Get.snackbar("Error", "Judul & kategori harus diisi",
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.red[200]);
+                  Get.snackbar(
+                    "Error",
+                    "Judul & kategori harus diisi",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.red[200],
+                  );
                 }
               },
-              child: const Text("Simpan"),
-            )
+            ),
           ],
         ),
       ),

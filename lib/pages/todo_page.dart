@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:list_app/widget/widget_customcard.dart';
 import '../controllers/todo_controller.dart';
 import '../models/todo.dart';
 import 'add_todo.dart';
@@ -21,27 +22,13 @@ class TodoPage extends StatelessWidget {
           itemCount: todoC.todos.length,
           itemBuilder: (context, index) {
             final todo = todoC.todos[index];
-            return Card(
-              margin: const EdgeInsets.all(8),
-              child: ListTile(
-                leading: Checkbox(
-                  value: todo.isDone,
-                  onChanged: (_) => todoC.toggleDone(todo.id),
-                ),
-                title: Text(
-                  todo.title,
-                  style: TextStyle(
-                    decoration:
-                        todo.isDone ? TextDecoration.lineThrough : null,
-                  ),
-                ),
-                subtitle: Text("${todo.description}\nKategori: ${todo.category}"),
-                isThreeLine: true,
-                trailing: IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.red),
-                  onPressed: () => todoC.deleteTodo(todo.id),
-                ),
-              ),
+            return CustomCard(
+              judul: todo.title,
+              deskripsi: todo.description,
+              kategori: todo.category,
+              isDone: todo.isDone,
+              onToggleDone: () => todoC.toggleDone(todo.id),
+              onDelete: () => todoC.deleteTodo(todo.id),
             );
           },
         );

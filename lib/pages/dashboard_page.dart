@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:list_app/controllers/dashboard_controller.dart';
 import 'package:list_app/pages/home_page.dart';
 import 'package:list_app/pages/profile_page.dart';
+import 'package:list_app/pages/todo_page.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -12,7 +13,7 @@ class DashboardPage extends StatelessWidget {
     final controller = Get.put(DashboardController());
 
     final List<Widget> pages = [
-      HomePage(),      
+      TodoPage(),      
       const ProfilePage(), 
     ];
 
