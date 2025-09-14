@@ -1,57 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:list_app/models/todo.dart';
+import 'package:list_app/pages/edit_todo_page.dart';
+import 'package:list_app/routes/routes.dart';
 import '../pages/list_page.dart';
 
 class CustomCard extends StatelessWidget {
-  final String judul;
-  final String deskripsi;
-  final String kategori;
-  final bool isDone;
+  final Todo todo;
   final VoidCallback onToggleDone;
   final VoidCallback onDelete;
 
   const CustomCard({
     super.key,
-    required this.judul,
-    required this.deskripsi,
-    required this.kategori,
-    required this.isDone,
+    required this.todo,
     required this.onToggleDone,
     required this.onDelete,
   });
 
+  // pilih warna sesuai kategori
+  Color _getNoteColor(String category) {
+    switch (category.toLowerCase()) {
+      case "pekerjaan":
+        return const Color(0xFFC8E6C9); // hijau pastel
+      case "sekolah":
+        return const Color(0xFFBBDEFB); // biru pastel
+      case "pribadi":
+         return const Color(0xFFFFF9C4); // kuning pastel
+      default:
+        return const Color.fromARGB(255, 255, 255, 255); // ungu pastel (default)
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      elevation: 3,
+      color: _getNoteColor(todo.category), // warna ala sticky note
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
       ),
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
       child: ListTile(
-        leading: Checkbox(
-          value: isDone,
-          onChanged: (_) => onToggleDone(),
-        ),
         title: Text(
-          judul,
+          todo.title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
-            decoration: isDone ? TextDecoration.lineThrough : null,
+            decoration: todo.isDone ? TextDecoration.lineThrough : null,
           ),
         ),
-        subtitle: Text("Kategori: $kategori"),
-        trailing: IconButton(
-          icon: const Icon(Icons.delete, color: Colors.red),
-          onPressed: onDelete,
+        subtitle: Text("Kategori: ${todo.category}"),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.edit, color: Colors.blue),
+              onPressed: () {
+                Get.toNamed(AppRoutes.editTodo, arguments: todo);
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              onPressed: onDelete,
+            ),
+          ],
         ),
         onTap: () {
-        Get.to(() => ListPage(), arguments: {
-        'judul': judul,
-        'kategori': kategori,
-        'deskripsi': deskripsi,
-      });
-     },
+          Get.to(() => ListPage(), arguments: {
+            'judul': todo.title,
+            'kategori': todo.category,
+            'deskripsi': todo.description,
+          });
+        },
+        leading: Checkbox(
+          value: todo.isDone,
+          onChanged: (_) => onToggleDone(),
+        ),
       ),
     );
   }

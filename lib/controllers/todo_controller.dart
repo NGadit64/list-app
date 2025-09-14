@@ -15,6 +15,15 @@ class TodoController extends GetxController {
     }
   }
 
+void updateTodo(String id, Todo updatedTodo) {
+  final index = todos.indexWhere((t) => t.id == id);
+  if (index != -1) {
+    todos[index] = updatedTodo;
+    todos.refresh();
+  }
+}
+
+
   void deleteTodo(String id) {
     todos.removeWhere((t) => t.id == id);
   }

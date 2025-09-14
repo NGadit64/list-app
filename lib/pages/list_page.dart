@@ -21,26 +21,34 @@ class ListPage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Obx(() => Text("Detail ${controller.judul}"))),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Obx(() => Column(
+      
+      appBar: AppBar(
+        title: Obx(() => Text("Detail ${controller.judul.value}")),
+        backgroundColor: controller.getNoteColor(), // warna ikut kategori
+      ),
+      body: Obx(() => Container(
+            color: controller.getNoteColor().withOpacity(0.2), // background lembut
+            padding: const EdgeInsets.all(20),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  controller.judul,
+                  controller.judul.value,
                   style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "Kategori: ${controller.kategori}",
+                  "Kategori: ${controller.kategori.value}",
                   style: const TextStyle(fontSize: 16, color: Colors.grey),
                 ),
                 const SizedBox(height: 20),
-                Text(controller.deskripsi, style: const TextStyle(fontSize: 18)),
+                Text(
+                  controller.deskripsi.value,
+                  style: const TextStyle(fontSize: 18),
+                ),
               ],
-            )),
-      ),
+            ),
+          )),
     );
   }
 }

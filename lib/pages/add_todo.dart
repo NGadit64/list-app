@@ -5,6 +5,8 @@ import 'package:list_app/controllers/todo_controller.dart';
 import 'package:list_app/models/todo.dart';
 import 'package:list_app/widget/widget_button.dart';
 import 'package:list_app/widget/widget_textfield.dart';
+import 'package:list_app/widget/widget_dropdown.dart';
+import 'package:list_app/widget/widget_multiline_textfield.dart'; // ⬅️ Tambahkan ini
 
 class AddTodoPage extends StatelessWidget {
   AddTodoPage({super.key});
@@ -15,7 +17,8 @@ class AddTodoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Tambah Todo")),
+      backgroundColor: const Color(0xFFFFF9C4),
+      appBar: AppBar(title: const Text("Tambah Todo"), backgroundColor: const Color.fromARGB(255, 255, 255, 142),),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: GetBuilder<AddTodoController>(
@@ -29,26 +32,23 @@ class AddTodoPage extends StatelessWidget {
                 isNumber: false,
               ),
               const SizedBox(height: 12),
-              MyTextField(
+
+              // 🔽 Multiline TextField untuk Deskripsi
+              MyMultilineTextField(
                 textEditingController: addTodoC.descC,
                 labelText: "Deskripsi",
                 labelColor: Colors.black,
-                pass: false,
-                isNumber: false,
               ),
+
               const SizedBox(height: 12),
-              DropdownButtonFormField<String>(
+              MyDropdown(
                 value: addTodoC.selectedCategory,
-                decoration: const InputDecoration(
-                  labelText: "Kategori",
-                  border: OutlineInputBorder(),
-                ),
-                items: addTodoC.categories
-                    .map((c) => DropdownMenuItem(value: c, child: Text(c)))
-                    .toList(),
+                items: addTodoC.categories,
+                labelText: "Kategori",
                 onChanged: addTodoC.setCategory,
               ),
               const SizedBox(height: 20),
+
               CustomButton(
                 text: "Simpan",
                 textColor: Colors.black,
