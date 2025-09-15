@@ -7,5 +7,6 @@ class AppRoutes {
   static const String loginPage = "/loginPage"; 
   static const String editTodoPage = "/editTodo";
   static const String editTodo = "/editTodo";
+  static const String historyPage = "/historyPage";
 
 }

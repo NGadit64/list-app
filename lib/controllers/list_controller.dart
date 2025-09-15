@@ -16,17 +16,17 @@ class ListController extends GetxController {
     this.deskripsi.value = deskripsi;
   }
 
-  /// Fungsi untuk menentukan warna note berdasarkan kategori
+  /// Fungsi menentukan warna berdasarkan kategori
   Color getNoteColor() {
     switch (kategori.value.toLowerCase()) {
       case "pekerjaan":
-        return const Color(0xFFC8E6C9); // hijau pastel
+        return const Color(0xFFC8E6C9); 
       case "sekolah":
-        return const Color(0xFFBBDEFB); // biru pastel
+        return const Color(0xFFBBDEFB); 
       case "pribadi":
-        return const Color(0xFFFFF9C4); // kuning pastel
+        return const Color(0xFFFFF9C4); 
       default:
-        return const Color(0xFFE1BEE7); // ungu pastel (default)
+        return const Color(0xFFE1BEE7); 
     }
   }
 }

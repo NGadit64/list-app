@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:list_app/controllers/dashboard_controller.dart';
-import 'package:list_app/pages/home_page.dart';
 import 'package:list_app/pages/profile_page.dart';
 import 'package:list_app/pages/todo_page.dart';
+import 'package:list_app/pages/history_page.dart'; // ✅ import history page
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -13,8 +13,9 @@ class DashboardPage extends StatelessWidget {
     final controller = Get.find<DashboardController>();
 
     final List<Widget> pages = [
-      TodoPage(),      
-      const ProfilePage(), 
+      TodoPage(),
+      HistoryPage(),        // ✅ tambahin history di urutan kedua
+      const ProfilePage(),
     ];
 
     return Obx(() {
@@ -27,6 +28,10 @@ class DashboardPage extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Icon(Icons.list),
               label: "Todos",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.history), // ✅ tab history
+              label: "History",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

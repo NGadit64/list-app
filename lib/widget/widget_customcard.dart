@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:list_app/models/todo.dart';
-import 'package:list_app/pages/edit_todo_page.dart';
+
 import 'package:list_app/routes/routes.dart';
 import '../pages/list_page.dart';
 
@@ -59,10 +59,19 @@ class CustomCard extends StatelessWidget {
                 Get.toNamed(AppRoutes.editTodo, arguments: todo);
               },
             ),
-            IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
-              onPressed: onDelete,
-            ),
+IconButton(
+  icon: const Icon(Icons.delete, color: Colors.red),
+  onPressed: () {
+    Get.defaultDialog(
+      title: "Konfirmasi",
+      middleText: "Are you sure want to delete this todo?",
+      textCancel: "No",
+      textConfirm: "Yes",
+      confirmTextColor: Colors.white,
+      onConfirm: onDelete, // tetap panggil onDelete kalau yes
+    );
+  },
+),
           ],
         ),
         onTap: () {

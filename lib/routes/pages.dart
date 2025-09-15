@@ -4,6 +4,7 @@ import 'package:list_app/bindings/edit_todo_binding.dart';
 import 'package:list_app/pages/add_todo.dart';
 import 'package:get/get.dart';
 import 'package:list_app/pages/edit_todo_page.dart';
+import 'package:list_app/pages/history_page.dart';
 import 'package:list_app/pages/login_page.dart';
 import 'package:list_app/pages/profile_page.dart';
 import 'package:list_app/pages/dashboard_page.dart'; // ✅ tambahin
@@ -16,5 +17,6 @@ class AppPages {
     GetPage(name: AppRoutes.addTodo, page: () => AddTodoPage(), binding: AddTodoBinding(),),
     GetPage(name: AppRoutes.profilePage, page: () => const ProfilePage()),
     GetPage(name: AppRoutes.editTodo,page: () => EditTodoPage(todo: Get.arguments),binding: EditTodoBinding(),),
+    GetPage(name: AppRoutes.historyPage,page: () => HistoryPage(),),
   ];
 }
