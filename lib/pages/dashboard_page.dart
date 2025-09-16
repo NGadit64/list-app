@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:list_app/controllers/dashboard_controller.dart';
 import 'package:list_app/pages/profile_page.dart';
 import 'package:list_app/pages/todo_page.dart';
-import 'package:list_app/pages/history_page.dart'; // ✅ import history page
+import 'package:list_app/pages/history_page.dart'; 
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -14,7 +14,7 @@ class DashboardPage extends StatelessWidget {
 
     final List<Widget> pages = [
       TodoPage(),
-      HistoryPage(),        // ✅ tambahin history di urutan kedua
+      HistoryPage(),        
       const ProfilePage(),
     ];
 
@@ -30,7 +30,7 @@ class DashboardPage extends StatelessWidget {
               label: "Todos",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.history), // ✅ tab history
+              icon: Icon(Icons.history), 
               label: "History",
             ),
             BottomNavigationBarItem(

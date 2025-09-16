@@ -5,20 +5,23 @@ import 'package:list_app/controllers/login_controller.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  final loginC = Get.put(LoginController());
+  final loginC = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-           backgroundColor: const Color(0xFFFFF9C4),
-      appBar: AppBar(title: const Text("Login Page"),backgroundColor: const Color.fromARGB(255, 255, 255, 142),), 
+      backgroundColor: const Color(0xFFFFF9C4),
+      appBar: AppBar(
+        title: const Text("Login Page"),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 142),
+      ),
       body: Container(
         margin: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Welcome To Our APPPP",
+              "To Do Note",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -30,7 +33,7 @@ class LoginPage extends StatelessWidget {
             Center(
               child: SizedBox(
                 width: 200,
-                child: Image.asset('assets/pohon.png'),
+                child: Image.asset('assets/nott.webp'),
               ),
             ),
             const SizedBox(height: 10),

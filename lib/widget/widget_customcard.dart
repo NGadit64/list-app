@@ -35,7 +35,7 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
-      color: _getNoteColor(todo.category), // warna ala sticky note
+      color: _getNoteColor(todo.category), // warna note
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -61,21 +61,25 @@ class CustomCard extends StatelessWidget {
             ),
 IconButton(
   icon: const Icon(Icons.delete, color: Colors.red),
-  onPressed: () {
-    Get.defaultDialog(
-      title: "Konfirmasi",
-      middleText: "Are you sure want to delete this todo?",
-      textCancel: "No",
-      textConfirm: "Yes",
-      confirmTextColor: Colors.white,
-      onConfirm: onDelete, // tetap panggil onDelete kalau yes
-    );
-  },
+onPressed: () {
+  Get.defaultDialog(
+    title: "Konfirmasi",
+    middleText: "Are you sure want to delete this todo?",
+    textCancel: "No",
+    textConfirm: "Yes",
+    confirmTextColor: Colors.white,
+    onConfirm: () {
+      onDelete();   // hapus
+      Get.back();   // tutup dialog
+    },
+  );
+},
+
 ),
           ],
         ),
         onTap: () {
-          Get.to(() => ListPage(), arguments: {
+          Get.toNamed(AppRoutes.listPage, arguments: {
             'judul': todo.title,
             'kategori': todo.category,
             'deskripsi': todo.description,

@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.textColor,
-    this.backgroundColor = const Color.fromARGB(255, 247, 225, 143), // default warna tombol
+    this.backgroundColor = const Color.fromARGB(255, 247, 225, 143), // default warna
     required this.onPressed,
   });
 
@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10), // biar agak rounded
+          borderRadius: BorderRadius.circular(10), // rounded
         ),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       ),

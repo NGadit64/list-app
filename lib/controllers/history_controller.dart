@@ -5,15 +5,10 @@ import 'package:list_app/models/todo.dart';
 class HistoryController extends GetxController {
   final todoC = Get.find<TodoController>();
 
-  RxList<Todo> history = <Todo>[].obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-    history.assignAll(todoC.history); // ambil dari todoController
-  }
+  // langsung reference ke todoC.history biar reactive
+  RxList<Todo> get history => todoC.history;
 
   void clearHistory() {
-    history.clear();
+    todoC.history.clear();
   }
 }

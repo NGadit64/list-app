@@ -4,9 +4,9 @@ class AppRoutes {
   static const String homePage = "/homePage";
   static const String profilePage = "/profilePage";
   static const String dashboardPage = "/dashboardPage";
-  static const String loginPage = "/loginPage"; 
+  static const String loginPage = "/loginPage";
   static const String editTodoPage = "/editTodo";
   static const String editTodo = "/editTodo";
   static const String historyPage = "/historyPage";
-
+  static const String listPage = "/listPage";
 }

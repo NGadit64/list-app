@@ -34,9 +34,19 @@ class HistoryPage extends StatelessWidget {
           itemBuilder: (context, index) {
             final todo = historyC.history[index];
             return ListTile(
-              leading: const Icon(Icons.history, color: Colors.grey),
-              title: Text(todo.title),
-              subtitle: Text(todo.category),
+              leading: Icon(
+                todo.isDone ? Icons.check_circle : Icons.radio_button_unchecked,
+                color: todo.isDone ? Colors.green : Colors.grey,
+              ),
+              title: Text(
+                todo.title,
+                style: TextStyle(
+                  decoration: todo.isDone
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+                ),
+              ),
+              subtitle: Text("Kategori: ${todo.category}"),
             );
           },
         );

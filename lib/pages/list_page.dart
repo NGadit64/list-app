@@ -5,7 +5,7 @@ import '../controllers/list_controller.dart';
 class ListPage extends StatelessWidget {
   ListPage({super.key});
 
-  final ListController controller = Get.put(ListController());
+  final ListController controller = Get.find<ListController>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ListPage extends StatelessWidget {
         backgroundColor: controller.getNoteColor(), // warna ikut kategori
       ),
       body: Obx(() => Container(
-            color: controller.getNoteColor().withOpacity(0.2), // background lembut
+            color: controller.getNoteColor().withOpacity(0.2),
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

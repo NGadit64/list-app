@@ -21,14 +21,14 @@ class MyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: textEditingController,
-      obscureText: pass, // biar bisa dipakai untuk password juga
+      obscureText: pass, // password 
       keyboardType: isNumber ? TextInputType.number : TextInputType.text,
       inputFormatters: isNumber ? [FilteringTextInputFormatter.digitsOnly] : [],
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: TextStyle(color: labelColor),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8), // biar ada border
+          borderRadius: BorderRadius.circular(8), // border
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blue, width: 2),
