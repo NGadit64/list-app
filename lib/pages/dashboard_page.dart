@@ -12,15 +12,11 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<DashboardController>();
 
-    final List<Widget> pages = [
-      TodoPage(),
-      HistoryPage(),        
-      const ProfilePage(),
-    ];
+    
 
     return Obx(() {
       return Scaffold(
-        body: pages[controller.selectedIndex.value],
+        body: controller.pages[controller.selectedIndex.value],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: controller.selectedIndex.value,
           onTap: controller.changePage,

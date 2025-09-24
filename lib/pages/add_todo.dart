@@ -11,8 +11,8 @@ import 'package:list_app/widget/widget_multiline_textfield.dart'; // ⬅️ Tamb
 class AddTodoPage extends StatelessWidget {
   AddTodoPage({super.key});
 
-  final addTodoC = Get.put(AddTodoController());
-  final todoC = Get.find<TodoController>();
+  final addTodoC = Get.find<AddTodoController>();
+  final todoC = Get.put(TodoController());
 
   @override
   Widget build(BuildContext context) {

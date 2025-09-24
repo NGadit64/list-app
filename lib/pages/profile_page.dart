@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
               .map((creator) => Column(
                     children: [
                       CircleAvatar(
-                        radius: 40,
+                        radius: 81.079365,
                         backgroundImage: AssetImage(creator["image"]!),
                       ),
                       const SizedBox(height: 10),

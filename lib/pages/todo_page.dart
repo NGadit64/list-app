@@ -19,10 +19,10 @@ class TodoPage extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: LinearGradient( //gradient
             colors: [
-              const Color(0xFFF1F8E9), // hijau muda pastel
-              const Color(0xFFFFFDE7), // kuning muda pastel
+              const Color(0xFFF1F8E9), // putih agak hijau 
+              const Color(0xFFFFFDE7), // putih agak kuning
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -30,7 +30,7 @@ class TodoPage extends StatelessWidget {
           image: const DecorationImage(
             image: AssetImage("assets/paper.jpeg"),
             fit: BoxFit.cover,
-            opacity: 0.4, // transparan biar halus
+            opacity: 0.4,
           ),
         ),
         child: Obx(() {
@@ -57,7 +57,7 @@ class TodoPage extends StatelessWidget {
         }),
       ),
         floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFFFFF176), // kuning pastel sticky note
+        backgroundColor: const Color(0xFFFFF176), // kuning
         onPressed: () => Get.toNamed(AppRoutes.addTodo),
         child: const Icon(Icons.add, color: Colors.black87),
       ),

@@ -20,7 +20,14 @@ class HistoryPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Obx(() {
+      body: Container(
+        decoration: const BoxDecoration(
+        image: const DecorationImage(
+            image: AssetImage("assets/paper.jpeg"),
+            fit: BoxFit.cover,
+            opacity: 0.4,
+          ),),
+        child: Obx(() {
         if (historyC.history.isEmpty) {
           return const Center(
             child: Text(
@@ -51,6 +58,7 @@ class HistoryPage extends StatelessWidget {
           },
         );
       }),
+      ),
     );
   }
 }
