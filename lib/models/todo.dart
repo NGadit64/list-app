@@ -13,7 +13,6 @@ class Todo {
     this.isDone = false,
   });
 
-  // copyWith untuk update sebagian data (contoh: toggle isDone)
   Todo copyWith({
     String? id,
     String? title,
@@ -27,6 +26,28 @@ class Todo {
       description: description ?? this.description,
       category: category ?? this.category,
       isDone: isDone ?? this.isDone,
+    );
+  }
+
+  // 🔽 Convert ke Map untuk SQLite
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'category': category,
+      'isDone': isDone ? 1 : 0,
+    };
+  }
+
+  // 🔽 Convert dari Map ke Object
+  factory Todo.fromMap(Map<String, dynamic> map) {
+    return Todo(
+      id: map['id'],
+      title: map['title'],
+      description: map['description'],
+      category: map['category'],
+      isDone: map['isDone'] == 1,
     );
   }
 }

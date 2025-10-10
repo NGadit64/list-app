@@ -12,7 +12,7 @@ class AddTodoPage extends StatelessWidget {
   AddTodoPage({super.key});
 
   final addTodoC = Get.find<AddTodoController>();
-  final todoC = Get.put(TodoController());
+  final todoC = Get.find<TodoController>();
 
   @override
   Widget build(BuildContext context) {

@@ -1,39 +1,66 @@
 import 'package:get/get.dart';
 import '../models/todo.dart';
+import '../dbHelper.dart';
 
 class TodoController extends GetxController {
   var todos = <Todo>[].obs;
-  var history = <Todo>[].obs; // <- daftar todo yang sudah dihapus
+  var history = <Todo>[].obs;
 
-  void addTodo(Todo todo) {
-    todos.add(todo);
+  final _dbHelper = DBHelper();
+
+  @override
+  void onInit() {
+    super.onInit();
+    loadTodos();
+    loadHistory();
   }
 
-  void toggleDone(String id) {
+  Future<void> loadTodos() async {
+    final data = await _dbHelper.getTodos();
+    todos.assignAll(data);
+  }
+
+  Future<void> loadHistory() async {
+    final data = await _dbHelper.getHistory();
+    history.assignAll(data);
+  }
+
+  Future<void> addTodo(Todo todo) async {
+    await _dbHelper.insertTodo(todo);
+    await loadTodos();
+  }
+
+  Future<void> toggleDone(String id) async {
     int index = todos.indexWhere((t) => t.id == id);
     if (index != -1) {
-      todos[index] = todos[index].copyWith(isDone: !todos[index].isDone);
+      final updated = todos[index].copyWith(isDone: !todos[index].isDone);
+      await _dbHelper.updateTodo(updated);
+      await loadTodos();
     }
   }
 
-  void updateTodo(String id, Todo updatedTodo) {
-    final index = todos.indexWhere((t) => t.id == id);
-    if (index != -1) {
-      todos[index] = updatedTodo;
-      todos.refresh();
-    }
+  Future<void> updateTodo(String id, Todo updatedTodo) async {
+    await _dbHelper.updateTodo(updatedTodo);
+    await loadTodos();
   }
 
-  void deleteTodo(String id) {
-    final index = todos.indexWhere((t) => t.id == id);
-    if (index != -1) {
-      // pindahkan ke history
-      history.add(todos[index]);
-      // hapus dari list utama
-      todos.removeAt(index);
-    }
+  Future<void> deleteTodo(String id) async {
+    // pindahkan ke history dulu
+    final todo = todos.firstWhere((t) => t.id == id);
+    await _dbHelper.insertHistory(todo);
+    // hapus dari todos
+    await _dbHelper.deleteTodo(id);
+    await loadTodos();
+    await loadHistory();
   }
 
-  List<Todo> get activeTodos => todos.where((t) => !t.isDone).toList();
-  List<Todo> get doneTodos => todos.where((t) => t.isDone).toList();
+  Future<void> deleteFromHistory(String id) async {
+    await _dbHelper.deleteHistory(id);
+    await loadHistory();
+  }
+
+  Future<void> clearHistory() async {
+    await _dbHelper.clearHistory();
+    await loadHistory();
+  }
 }

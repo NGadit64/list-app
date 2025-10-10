@@ -14,15 +14,15 @@ class TodoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Daftar Todo"),
-        backgroundColor: const Color(0xFF81C784), // hijau pastel
+        backgroundColor: const Color.fromARGB(255, 245, 224, 130), // hijau pastel
         elevation: 0,
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient( //gradient
             colors: [
-              const Color(0xFFF1F8E9), // putih agak hijau 
-              const Color(0xFFFFFDE7), // putih agak kuning
+              const Color.fromARGB(255, 252, 255, 160), // putih agak hijau 
+              const Color.fromARGB(255, 225, 213, 160), // putih agak kuning
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -57,7 +57,7 @@ class TodoPage extends StatelessWidget {
         }),
       ),
         floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFFFFF176), // kuning
+        backgroundColor: const Color.fromARGB(255, 255, 225, 118), // kuning
         onPressed: () => Get.toNamed(AppRoutes.addTodo),
         child: const Icon(Icons.add, color: Colors.black87),
       ),

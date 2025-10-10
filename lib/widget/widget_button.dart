@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.textColor,
-    this.backgroundColor = const Color.fromARGB(255, 247, 225, 143), // default warna
+    this.backgroundColor = const Color(0xFFFFF176), // kuning pastel
     required this.onPressed,
   });
 
@@ -20,14 +20,21 @@ class CustomButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10), // rounded
+          borderRadius: BorderRadius.circular(10),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        elevation: 3,
+        shadowColor: Colors.grey.shade400,
       ),
       onPressed: onPressed,
       child: Text(
         text,
-        style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w500),
+        style: TextStyle(
+          color: textColor,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
       ),
     );
   }

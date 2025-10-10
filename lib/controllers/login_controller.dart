@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:list_app/routes/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   final txtUsername = TextEditingController();
@@ -8,10 +9,12 @@ class LoginController extends GetxController {
 
   var statusLogin = "Login status".obs;
 
-  void login() {
-    if (txtUsername.text == "admin" && txtPassword.text == "admin123") {
+  login() async {
+    if (txtUsername.text.toString() == "admin" && txtPassword.text.toString() == "admin123") {
       statusLogin.value = "Sukses login";
-      Get.offNamed(AppRoutes.dashboardPage);
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString("username", txtUsername.text.toString());
+      Get.offAllNamed(AppRoutes.dashboardPage);
     } else {
       statusLogin.value = "Gagal login";
       Get.snackbar(
