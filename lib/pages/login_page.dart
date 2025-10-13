@@ -10,72 +10,123 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF9C4),
-      appBar: AppBar(
-        title: const Text("Login Page"),
-        backgroundColor: const Color.fromARGB(255, 255, 255, 142),
-      ),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "To Do Note",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.teal,
+      backgroundColor: const Color(0xFFFFF9C4), // light yellow background
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Logo + Title Row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Logo
+                  Image.asset(
+                    'assets/nott.webp',
+                    width: 60,
+                    height: 60,
+                  ),
+                  const SizedBox(width: 12),
+                  // Title Text
+                  const Text(
+                    "To-Do Notes",
+                    style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF3E2723), // dark brown accent
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ],
               ),
-            ),
 
-            //gambar
-            Center(
-              child: SizedBox(
-                width: 200,
-                child: Image.asset('assets/nott.webp'),
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Text("Fill Username and password :"),
+              const SizedBox(height: 40),
 
-            // Username
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              child: TextField(
+              // Username TextField
+              TextField(
                 controller: loginC.txtUsername,
-                decoration: const InputDecoration(
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
                   hintText: "Username",
-                  border: OutlineInputBorder(),
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  filled: true,
+                  fillColor: const Color(0xFFFFFDE7), // lighter yellow box
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Color(0xFF795548), width: 1), // brown border
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Color(0xFF5D4037), width: 2),
+                  ),
                 ),
               ),
-            ),
 
-            // Password
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              child: TextField(
+              const SizedBox(height: 16),
+
+              // Password TextField
+              TextField(
                 controller: loginC.txtPassword,
                 obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: "Password",
-                  border: OutlineInputBorder(),
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                  hintText: "Password",
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  filled: true,
+                  fillColor: const Color(0xFFFFFDE7),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Color(0xFF795548), width: 1),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Color(0xFF5D4037), width: 2),
+                  ),
                 ),
               ),
-            ),
 
-            // Button login
-            Container(
-              margin: const EdgeInsets.all(10),
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: loginC.login,
-                child: const Text("Login"),
+              const SizedBox(height: 24),
+
+              // Login Button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: loginC.login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF795548), // brown button
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 3,
+                  ),
+                  child: const Text(
+                    "LOGIN",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.1,
+                    ),
+                  ),
+                ),
               ),
-            ),
 
-            Obx(() => Text(loginC.statusLogin.value)),
-          ],
+              const SizedBox(height: 16),
+
+              // Login status
+              Obx(
+                () => Text(
+                  loginC.statusLogin.value,
+                  style: const TextStyle(
+                    color: Color(0xFF3E2723),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
