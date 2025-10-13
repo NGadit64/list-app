@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:list_app/widget/widget_button.dart'; // pastikan sudah buat file ini
+import 'package:list_app/widget/widget_button.dart';
+import 'package:list_app/dbHelper.dart';
+import 'package:list_app/routes/routes.dart';
+
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -9,7 +12,7 @@ class ProfilePage extends StatelessWidget {
     final creators = [
       {"name": "Adit", "image": "assets/adit.jpeg"},
       {"name": "Faruq", "image": "assets/dafi.jpeg"},
-      {"name": "Francis", "image": "assets/francis.jpeg"},
+      {"name": "Francis", "image": "assets/francistest.gif"},
     ];
 
     return Scaffold(
@@ -69,11 +72,15 @@ class ProfilePage extends StatelessWidget {
             ),
             // Tombol satu di bawah
             CustomButton(
-              text: "Batang luar",
-              textColor: Colors.black87,
-              backgroundColor: const Color.fromARGB(255, 241, 211, 133),
-              onPressed: () {
+              text: "LOGOUT",
+              textColor: const Color.fromARGB(255, 255, 255, 255),
+              backgroundColor: const Color(0xFFD32F2F),
+              onPressed: () async{
                 // buat LOgsout
+                //vro you alr made the button js at the logic 💔
+              final dbHelper = DBHelper();
+              await dbHelper.clearAllData();
+              Navigator.pushReplacementNamed(context, AppRoutes.loginPage);
               },
             ),
             const SizedBox(height: 20),

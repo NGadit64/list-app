@@ -93,4 +93,12 @@ class DBHelper {
     final client = await db;
     await client.delete('history');
   }
+
+  // ───────────logout───────────── // aestehtic banget dit kayak gini
+
+  Future<void> clearAllData() async {
+    final client = await db;
+    await client.delete('todos'); 
+    await client.delete('history'); 
+}
 }

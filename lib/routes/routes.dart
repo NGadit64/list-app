@@ -9,5 +9,6 @@ class AppRoutes {
   static const String editTodo = "/editTodo";
   static const String historyPage = "/historyPage";
   static const String listPage = "/listPage";
-    static const String splashScreen = "/splashScreen";
+  static const String splashScreen = "/splashScreen";
+  static const String responsivePage = "/responsivePage";
 }

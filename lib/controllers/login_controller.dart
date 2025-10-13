@@ -14,7 +14,7 @@ class LoginController extends GetxController {
       statusLogin.value = "Sukses login";
       final prefs = await SharedPreferences.getInstance();
       prefs.setString("username", txtUsername.text.toString());
-      Get.offAllNamed(AppRoutes.dashboardPage);
+      Get.offAllNamed(AppRoutes.responsivePage);
     } else {
       statusLogin.value = "Gagal login";
       Get.snackbar(
