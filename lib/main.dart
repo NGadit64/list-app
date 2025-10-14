@@ -16,10 +16,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true, // <- ini harus di dalam ThemeData
+        useMaterial3: true,
       ),
+      
       initialRoute: AppRoutes.splashScreen,
       getPages: AppPages.pages,
     );
   }
 }
+

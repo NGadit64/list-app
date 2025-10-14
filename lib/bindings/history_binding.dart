@@ -8,3 +8,4 @@ class HistoryBinding extends Bindings {
     Get.lazyPut<HistoryController>(() => HistoryController());
   }
 }
+F
