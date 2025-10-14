@@ -45,7 +45,7 @@ class DBHelper {
     );
   }
 
-  // ─────── CRUD TODO ──────────────
+  // ─────── CRUD TODO ────────────── //
 
   Future<int> insertTodo(Todo todo) async {
     final client = await db;

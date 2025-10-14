@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:list_app/pages/splashscreen_page.dart';
 import 'package:list_app/widget/widget_button.dart';
 import 'package:list_app/dbHelper.dart';
 import 'package:list_app/routes/routes.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -15,13 +17,25 @@ class ProfilePage extends StatelessWidget {
       {"name": "Francis", "image": "assets/francistest.gif"},
     ];
 
+    Future<void> logout() async {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove("username"); // hapus username
+      await prefs.remove("password"); // hapus pw
+      Get.offAllNamed(AppRoutes.splashScreen); // balik ke splash
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           "Profil Pembuat",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: const Color.fromARGB(255, 244, 220, 65), // coklat lembut
+        backgroundColor: const Color.fromARGB(
+          255,
+          244,
+          220,
+          65,
+        ), // coklat lembut
         elevation: 0,
       ),
       body: Container(
@@ -75,13 +89,7 @@ class ProfilePage extends StatelessWidget {
               text: "LOGOUT",
               textColor: const Color.fromARGB(255, 255, 255, 255),
               backgroundColor: const Color(0xFFD32F2F),
-              onPressed: () async{
-                // buat LOgsout
-                //vro you alr made the button js at the logic 💔
-              final dbHelper = DBHelper();
-              await dbHelper.clearAllData();
-              Navigator.pushReplacementNamed(context, AppRoutes.loginPage);
-              },
+              onPressed: logout,
             ),
             const SizedBox(height: 20),
           ],
