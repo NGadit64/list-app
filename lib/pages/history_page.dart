@@ -21,7 +21,7 @@ class HistoryPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_sweep, color: Colors.white),
-            onPressed: controller.clearHistory,
+            onPressed: printInfo,
           ),
         ],
       ),

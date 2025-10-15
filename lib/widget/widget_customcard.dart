@@ -21,13 +21,13 @@ class CustomCard extends StatelessWidget {
   Color _getNoteColor(String category) {
     switch (category.toLowerCase()) {
       case "pekerjaan":
-        return const Color(0xFFC8E6C9); // hijau pastel
+        return const Color.fromARGB(255, 255, 235, 157); 
       case "sekolah":
-        return const Color(0xFFBBDEFB); // biru pastel
+        return const Color.fromARGB(255, 255, 251, 182); 
       case "pribadi":
-         return const Color(0xFFFFF9C4); // kuning pastel
+        return const Color.fromARGB(255, 253, 255, 202); //=====
       default:
-        return const Color.fromARGB(255, 255, 255, 255); // ungu pastel (default)
+        return const Color.fromARGB(255, 255, 255, 255); 
     }
   }
 

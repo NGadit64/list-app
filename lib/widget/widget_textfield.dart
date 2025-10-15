@@ -28,7 +28,7 @@ class MyTextField extends StatelessWidget {
         labelText: labelText,
         labelStyle: TextStyle(color: labelColor),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8), // border
+          borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blue, width: 2),

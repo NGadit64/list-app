@@ -16,9 +16,9 @@ class MyMultilineTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: textEditingController,
-      maxLines: null, // banyak baris
+      maxLines: null, 
       keyboardType: TextInputType.multiline,
-      textInputAction: TextInputAction.newline, // enter = baris 
+      textInputAction: TextInputAction.newline, 
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: TextStyle(color: labelColor),

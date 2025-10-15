@@ -20,13 +20,13 @@ class ListController extends GetxController {
   Color getNoteColor() {
     switch (kategori.value.toLowerCase()) {
       case "pekerjaan":
-        return const Color(0xFFC8E6C9); 
+        return const Color.fromARGB(255, 255, 235, 157); 
       case "sekolah":
-        return const Color(0xFFBBDEFB); 
+        return const Color.fromARGB(255, 255, 251, 182); 
       case "pribadi":
-        return const Color(0xFFFFF9C4); 
+        return const Color.fromARGB(255, 253, 255, 202); //=====
       default:
-        return const Color(0xFFE1BEE7); 
+        return const Color.fromARGB(255, 255, 255, 255); 
     }
   }
 }

@@ -59,8 +59,5 @@ class TodoController extends GetxController {
     await loadHistory();
   }
 
-  Future<void> clearHistory() async {
-    await _dbHelper.clearHistory();
-    await loadHistory();
-  }
+
 }

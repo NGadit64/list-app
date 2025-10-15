@@ -34,7 +34,7 @@ class DBHelper {
         ''');
         await db.execute('''
           CREATE TABLE history(
-            id TEXT PRIMARY KEY,
+            id TEXT PRIMARY KEY,   
             title TEXT,
             description TEXT,
             category TEXT,
@@ -45,43 +45,42 @@ class DBHelper {
     );
   }
 
-  // ─────── CRUD TODO ────────────── //
 
-  Future<int> insertTodo(Todo todo) async {
-    final client = await db;
-    return await client.insert('todos', todo.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
-  }
-
-  Future<List<Todo>> getTodos() async {
+  Future<List<Todo>> getTodos() async { 
     final client = await db;
     final result = await client.query('todos', orderBy: 'title ASC');
     return result.map((e) => Todo.fromMap(e)).toList();
   }
 
-  Future<int> updateTodo(Todo todo) async {
+  Future<int> insertTodo(Todo todo) async { 
+    final client = await db;                        
+    return await client.insert('todos', todo.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<int> updateTodo(Todo todo) async {  
     final client = await db;
     return await client.update('todos', todo.toMap(),
         where: 'id = ?', whereArgs: [todo.id]);
   }
 
-  Future<int> deleteTodo(String id) async {
+  Future<int> deleteTodo(String id) async {  
     final client = await db;
     return await client.delete('todos', where: 'id = ?', whereArgs: [id]);
   }
 
-  // ─────── HISTORY ──────────────
 
-  Future<int> insertHistory(Todo todo) async {
-    final client = await db;
-    return await client.insert('history', todo.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
-  }
 
   Future<List<Todo>> getHistory() async {
     final client = await db;
     final result = await client.query('history', orderBy: 'title ASC');
     return result.map((e) => Todo.fromMap(e)).toList();
+  }
+  
+  Future<int> insertHistory(Todo todo) async {  
+    final client = await db;
+    return await client.insert('history', todo.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<int> deleteHistory(String id) async {
@@ -89,16 +88,4 @@ class DBHelper {
     return await client.delete('history', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<void> clearHistory() async {
-    final client = await db;
-    await client.delete('history');
-  }
-
-  // ───────────logout───────────── // aestehtic banget dit kayak gini
-
-  Future<void> clearAllData() async {
-    final client = await db;
-    await client.delete('todos'); 
-    await client.delete('history'); 
-}
 }

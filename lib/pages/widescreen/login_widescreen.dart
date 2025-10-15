@@ -86,20 +86,12 @@ class LoginPageWidescreen extends StatelessWidget {
                   flex: 1,
                   child: Padding(
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 60, vertical: 40),
+                    const EdgeInsets.symmetric(horizontal: 60, vertical: 32),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Welcome Back!",
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: darkBrown,
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                        const SizedBox(height: 40),
+                        
+                        const SizedBox(height: 39),
 
                         // Username TextField
                         TextField(
@@ -148,7 +140,7 @@ class LoginPageWidescreen extends StatelessWidget {
                           ),
                         ),
 
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 16),
 
                         // Login Button
                         SizedBox(
@@ -159,7 +151,7 @@ class LoginPageWidescreen extends StatelessWidget {
                               backgroundColor: brown,
                               foregroundColor: Colors.white,
                               padding:
-                              const EdgeInsets.symmetric(vertical: 14),
+                              const EdgeInsets.symmetric(vertical: 8),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
